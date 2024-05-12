@@ -12,23 +12,33 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/styles.css">
+        <style>
+            .fixed-element {
+            position: fixed;
+            top: 10px;
+            right: 30px;
+            }
+        </style>
 </head>
 
 
 <body>
+    <a href=newcourse.html><button class="fixed-element" type="button">New Course</button></a>
     <div class="container">
+        
         <div class="container">
             <table class="table mt-5" id="usersTable">
                 <th scope="col">Department</th>
                 <th scope="col">Course Number</th>
                 <th scope="col">Course Name</th>
                 <th scope="col">Details</th>
+                <th scope="col">Delete</th>
                 </tr>
                 </thead>
             </table>
         </div>
     </div>
-    <a href=newcourse.html><button type="button">New Course</button></a>
+    
 </body>
 <script>
     // fetches all users and places their names and emails in a table
@@ -70,16 +80,22 @@
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             const detailsCell = row.insertCell(3);
+            const deleteCell = row.insertCell(4);
             cell1.innerHTML = data[i].dept;
             cell2.innerHTML = data[i].courseNum;
             cell3.innerHTML = data[i].courseName;
 
 
            
-            let anchor = document.createElement("a");
-            anchor.href = `details.html?cid=${data[i].id}`;
-            anchor.text = "See details";  
-            detailsCell.appendChild(anchor);
+            let anchor1 = document.createElement("a");
+            anchor1.href = `details.html?cid=${data[i].id}`;
+            anchor1.text = "See details";  
+            detailsCell.appendChild(anchor1);
+
+            let anchor2 = document.createElement("a");
+            anchor2.href = `confirm-delete.html?cid=${data[i].id}`;
+            anchor2.text = "Delete";  
+            deleteCell.appendChild(anchor2);
 
         }
     }
